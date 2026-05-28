@@ -29,4 +29,7 @@ public class Usuario {
 
     @Column(nullable = false)
     private String perfil;
+
+    @Column(nullable = false)
+    private Boolean ativo;
 }
