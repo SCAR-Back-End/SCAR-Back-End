@@ -18,17 +18,22 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizar(String id, Usuario usuarioAtualizado){
+    public void atualizar(String id, Usuario usuarioAtualizado){
 
-        return usuarioRepository.findById(Long.valueOf(id)).map( usuarioExistente -> {
-            usuarioExistente.setNome(usuarioAtualizado.getNome());
-           usuarioExistente.setPerfil(usuarioAtualizado.getPerfil());
-           usuarioExistente.setUidRfid(usuarioAtualizado.getUidRfid());
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(Long.valueOf(id));
 
-            return usuarioRepository.save(usuarioExistente);
+        if(usuarioOptional.isEmpty()){
+            // criar um exception handler e personalizar as exception depois
+            throw new RuntimeException("Usuário não encontrado");
+        }
 
-            //Criar exception handler e personalizar a exception dps
-        }).orElseThrow( () -> new RuntimeException("Usuário não existe"));
+        Usuario usuarioExistente = usuarioOptional.get();
+
+        usuarioExistente.setNome(usuarioAtualizado.getNome());
+        usuarioExistente.setPerfil(usuarioAtualizado.getPerfil());
+        usuarioExistente.setUidRfid(usuarioAtualizado.getUidRfid());
+
+        usuarioRepository.save(usuarioExistente);
 
     }
 
