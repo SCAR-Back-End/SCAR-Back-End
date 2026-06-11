@@ -49,8 +49,8 @@ public class UsuarioController {
         List<UsuarioDTO> usuarios = usuarioService.listarTodos().stream().map( usuario -> new UsuarioDTO(
                 usuario.getId(),
                 usuario.getNome(),
-                usuario.getPerfil(),
                 usuario.getUidRfid(),
+                usuario.getPerfil(),
                 usuario.getAtivo())).toList();
 
         return ResponseEntity.ok(usuarios);
