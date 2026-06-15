@@ -32,6 +32,7 @@ public class UsuarioService {
         usuarioExistente.setNome(usuarioAtualizado.getNome());
         usuarioExistente.setPerfil(usuarioAtualizado.getPerfil());
         usuarioExistente.setUidRfid(usuarioAtualizado.getUidRfid());
+        usuarioExistente.setMatricula(usuarioAtualizado.getMatricula());
 
         usuarioRepository.save(usuarioExistente);
 

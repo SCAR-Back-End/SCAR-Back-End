@@ -30,6 +30,7 @@ public class UsuarioController {
         usuario.setNome(usuarioDTO.getNome());
         usuario.setPerfil(usuarioDTO.getPerfil());
         usuario.setUidRfid(usuarioDTO.getUidRfid());
+        usuario.setMatricula(usuarioDTO.getMatricula());
         usuario.setAtivo(true);
 
         usuarioService.salvar(usuario);
@@ -50,6 +51,7 @@ public class UsuarioController {
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getUidRfid(),
+                usuario.getMatricula(),
                 usuario.getPerfil(),
                 usuario.getAtivo())).toList();
 
@@ -71,6 +73,7 @@ public class UsuarioController {
         usuarioDTO.setNome(usuario.getNome());
         usuarioDTO.setPerfil(usuario.getPerfil());
         usuarioDTO.setUidRfid(usuario.getUidRfid());
+        usuarioDTO.setMatricula(usuario.getMatricula());
         usuarioDTO.setAtivo(usuario.getAtivo());
 
         return ResponseEntity.ok(usuarioDTO);
@@ -82,6 +85,7 @@ public class UsuarioController {
         usuario.setNome(usuarioDTO.getNome());
         usuario.setPerfil(usuarioDTO.getPerfil());
         usuario.setUidRfid(usuarioDTO.getUidRfid());
+        usuario.setMatricula(usuarioDTO.getMatricula());
 
         usuarioService.atualizar(id, usuario);
 

@@ -27,6 +27,9 @@ public class Usuario {
     @Column(name = "uid_rfid", unique = true, nullable = false)
     private String uidRfid;
 
+    @Column(name = "matricula")
+    private String matricula;
+
     @Column(nullable = false)
     private String perfil;
 

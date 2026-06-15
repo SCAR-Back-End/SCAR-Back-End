@@ -18,5 +18,11 @@ public interface LogRepository extends JpaRepository<Log, Long> {
            "ORDER BY l.dataHora DESC LIMIT 1")
     Optional<Log> findRetiradaPendente(@Param("usuarioId") Long usuarioId);
 
+    @Query("SELECT l FROM Log l WHERE l.tipo = 'RETIRADA' " +
+           "AND NOT EXISTS (SELECT d FROM Log d WHERE d.chave.id = l.chave.id " +
+           "AND d.tipo = 'DEVOLUCAO' AND d.dataHora > l.dataHora) " +
+           "ORDER BY l.dataHora DESC")
+    List<Log> findAllRetiradasPendentes();
+
     List<Log> findAllByOrderByDataHoraDesc();
 }
