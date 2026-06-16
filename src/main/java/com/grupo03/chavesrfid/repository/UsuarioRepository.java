@@ -9,4 +9,6 @@ import com.grupo03.chavesrfid.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByUidRfid(String uidRfid);
+
+    Optional<Usuario> findByMatricula(String matricula);
 }
