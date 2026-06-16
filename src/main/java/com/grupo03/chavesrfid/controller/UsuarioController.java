@@ -33,6 +33,7 @@ public class UsuarioController {
         usuario.setMatricula(usuarioDTO.getMatricula());
         usuario.setAtivo(true);
 
+
         usuarioService.salvar(usuario);
 
         URI location = ServletUriComponentsBuilder
@@ -81,15 +82,43 @@ public class UsuarioController {
 
     @PutMapping("{id}")
     public ResponseEntity<Void> atualizar(@PathVariable("id") String id, @RequestBody UsuarioDTO usuarioDTO){
-        Usuario usuario = new Usuario();
-        usuario.setNome(usuarioDTO.getNome());
-        usuario.setPerfil(usuarioDTO.getPerfil());
-        usuario.setUidRfid(usuarioDTO.getUidRfid());
-        usuario.setMatricula(usuarioDTO.getMatricula());
+        System.out.println("====================================");
+        System.out.println("PUT /api/usuario/" + id);
+        System.out.println("DTO RECEBIDO:");
+        System.out.println("id = " + usuarioDTO.getId());
+        System.out.println("nome = " + usuarioDTO.getNome());
+        System.out.println("perfil = " + usuarioDTO.getPerfil());
+        System.out.println("matricula = " + usuarioDTO.getMatricula());
+        System.out.println("ativo = " + usuarioDTO.getAtivo());
+        System.out.println("uidRfid = " + usuarioDTO.getUidRfid());
+        System.out.println("====================================");
 
-        usuarioService.atualizar(id, usuario);
+        try {
 
-        return ResponseEntity.noContent().build();
+            Usuario usuario = new Usuario();
+
+            usuario.setNome(usuarioDTO.getNome());
+            usuario.setPerfil(usuarioDTO.getPerfil());
+            usuario.setUidRfid(usuarioDTO.getUidRfid());
+            usuario.setMatricula(usuarioDTO.getMatricula());
+            usuario.setAtivo(usuarioDTO.getAtivo());
+
+            usuarioService.atualizar(id, usuario);
+
+            System.out.println("UPDATE EXECUTADO COM SUCESSO");
+
+            return ResponseEntity.noContent().build();
+
+        } catch (Exception e) {
+
+            System.out.println("ERRO DURANTE PUT USUARIO");
+            System.out.println("Classe da excecao: " + e.getClass().getName());
+            System.out.println("Mensagem: " + e.getMessage());
+
+            e.printStackTrace();
+
+            throw e;
+        }
     }
 
     @DeleteMapping("{id}")

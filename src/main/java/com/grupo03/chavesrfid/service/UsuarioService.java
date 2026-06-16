@@ -29,11 +29,20 @@ public class UsuarioService {
 
         Usuario usuarioExistente = usuarioOptional.get();
 
-        usuarioExistente.setNome(usuarioAtualizado.getNome());
-        usuarioExistente.setPerfil(usuarioAtualizado.getPerfil());
-        usuarioExistente.setAtivo(usuarioAtualizado.getAtivo());
-        usuarioExistente.setMatricula(usuarioAtualizado.getMatricula());
-        
+        // Atualiza apenas campos presentes no request (não sobrescrever com null)
+        if (usuarioAtualizado.getNome() != null) {
+            usuarioExistente.setNome(usuarioAtualizado.getNome());
+        }
+        if (usuarioAtualizado.getPerfil() != null) {
+            usuarioExistente.setPerfil(usuarioAtualizado.getPerfil());
+        }
+        if (usuarioAtualizado.getAtivo() != null) {
+            usuarioExistente.setAtivo(usuarioAtualizado.getAtivo());
+        }
+        if (usuarioAtualizado.getMatricula() != null) {
+            usuarioExistente.setMatricula(usuarioAtualizado.getMatricula());
+        }
+
         // uidRfid: só atualiza se não for null
         if (usuarioAtualizado.getUidRfid() != null) {
             usuarioExistente.setUidRfid(usuarioAtualizado.getUidRfid());
