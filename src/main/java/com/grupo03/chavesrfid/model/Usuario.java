@@ -34,7 +34,7 @@ public class Usuario {
     private String perfil;
 
     @Column(nullable = false)
-    private boolean ativo = true;
+    private Boolean ativo = true;
 
 
 }
