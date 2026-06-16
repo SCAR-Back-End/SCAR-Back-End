@@ -36,7 +36,7 @@ public class AcessoAvulsoService {
         Usuario usuario = usuarioOpt.get();
 
         // b. Verificar se o usuário está ativo
-        if (!usuario.isAtivo()) {
+        if (!usuario.getAtivo()) {
             return new AcessoAvulsoResponseDTO("NEGADO", "Usuário inativo", usuario.getNome());
         }
 
