@@ -31,8 +31,13 @@ public class UsuarioService {
 
         usuarioExistente.setNome(usuarioAtualizado.getNome());
         usuarioExistente.setPerfil(usuarioAtualizado.getPerfil());
-        usuarioExistente.setUidRfid(usuarioAtualizado.getUidRfid());
+        usuarioExistente.setAtivo(usuarioAtualizado.getAtivo());
         usuarioExistente.setMatricula(usuarioAtualizado.getMatricula());
+        
+        // uidRfid: só atualiza se não for null
+        if (usuarioAtualizado.getUidRfid() != null) {
+            usuarioExistente.setUidRfid(usuarioAtualizado.getUidRfid());
+        }
 
         usuarioRepository.save(usuarioExistente);
 
